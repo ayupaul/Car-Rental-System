@@ -1,0 +1,27 @@
+<div class="card">
+    
+    <div class="card-body">
+      <h5 class="card-title">Car Agreement</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>User Email</th>
+            <th>Car Maker</th>
+            <th>Car Model</th>
+            <th>Total Cost</th>
+            <th>Pickup Date</th>
+            <th>Return Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <td>{{userName}}</td>
+          <td>{{carDetails.maker}}</td>
+          <td>{{carDetails.model}}</td>
+          <td>Rental Price * Rental Duration(days)={{totalCost}}</td>
+          <td><input type="date" [(ngModel)]="startDate" [min]="currentDate" value="startDate" (ngModelChange)="updateTotalCost()"></td>
+          <td><input type="date" [(ngModel)]="endDate" [min]="currentDate" value="endDate" (ngModelChange)="updateTotalCost()"></td>
+        </tbody>
+      </table>
+      <a class="btn btn-primary" (click)="onBook()">Book</a>
+    </div>
+  </div>

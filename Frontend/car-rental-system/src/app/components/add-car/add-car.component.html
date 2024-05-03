@@ -1,0 +1,54 @@
+<div class="base">
+    <div class="login">
+      <form [formGroup]="carForm" (submit)="onAdd()">
+        <div class="mb-3">
+          <label for="Maker" class="form-label">Maker</label>
+  
+          <input
+            type="text"
+            class="form-control"
+            id="Maker"
+            placeholder="Enter Maker"
+            aria-describedby="maker"
+            formControlName="maker"
+          />
+          <span *ngIf="carForm.controls['maker'].dirty && carForm.hasError('required','maker')" style="color: red;">Maker Field is required</span>
+        </div>
+        <div class="mb-3">
+            <label for="Model" class="form-label">Model</label>
+    
+            <input
+              type="text"
+              class="form-control"
+              id="Model"
+              placeholder="Enter Maker"
+              aria-describedby="Model"
+              formControlName="model"
+            />
+            <span *ngIf="carForm.controls['model'].dirty && carForm.hasError('required','model')" style="color: red;">Model Field is required</span>
+          </div>
+    
+          <div class="mb-3">
+            <label for="RentalPrice" class="form-label">Rental Price</label>
+    
+            <input
+              type="number"
+              class="form-control"
+              id="RentalPrice"
+              placeholder="Enter Rental Price"
+              aria-describedby="rentalPrice"
+              formControlName="rentalPrice"
+            />
+            <span *ngIf="carForm.controls['rentalPrice'].dirty && carForm.hasError('required','rentalPrice')" style="color: red;">Rental Price Field is required</span>
+          </div>
+    
+  
+        <button type="submit" class="btn btn-primary" [disabled]="carForm.invalid">Submit</button>
+  
+       
+  
+        
+      </form>
+    </div>
+  </div>
+  

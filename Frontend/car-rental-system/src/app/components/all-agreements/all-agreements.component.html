@@ -1,0 +1,33 @@
+<div class="container mt-4"  *ngIf="allAgreements">
+    <div class="row mt-3">
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>UserId</th>
+                <th>Car Id</th>
+                <th>Total Cost</th>
+                <th>Pickup Date</th>
+                <th>Return Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let agreement of allAgreements">
+                <td>{{ agreement.userId }}</td>
+                <td>{{ agreement.carId }}</td>
+                <td>{{ agreement.totalCost }}</td>
+                <td>{{agreement.startDate}}</td>
+                <td>{{agreement.endDate}}</td>
+                <td ><button *ngIf="agreement.isRequestedForReturn" class="btn btn-primary" (click)="approve(agreement.agreementId)">Approve return for request</button>
+                  <button class="btn btn-danger" (click)="delete(agreement.agreementId)">Delete</button>
+                </td>
+                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="color: white;" *ngIf="!allAgreements">No Agreements found</div>
+</div>
+

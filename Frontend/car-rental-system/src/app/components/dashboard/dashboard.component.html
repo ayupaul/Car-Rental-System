@@ -1,0 +1,67 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4">
+        <label for="maker">Maker:</label>
+        <select id="maker" [(ngModel)]="selectedMaker" class="form-control">
+          <option value=null>Select</option>
+          <option *ngFor="let maker of makers" [value]="maker">{{ maker }}</option>
+        </select>
+       
+      </div>
+  
+      <div class="col-md-4">
+        <label for="model">Model:</label>
+        <select id="model" [(ngModel)]="selectedModel" class="form-control">
+          <option value=null>Select</option>
+          <option *ngFor="let model of models" [value]="model">{{ model }}</option>
+        </select>
+      </div>
+  
+      <div class="col-md-4">
+        <label for="price">Price:</label>
+        <select id="price" [(ngModel)]="selectedPrice" class="form-control">
+          <option value=null>Select</option>
+          <option *ngFor="let price of prices" [value]="price">{{ price }}</option>
+          <!-- Add more price ranges as needed -->
+        </select>
+      </div>
+    </div>
+  
+    <div class="row mt-2">
+      <div class="col-md-4">
+        <button (click)="filterData()" class="btn btn-primary">Filter</button>
+      </div>
+    </div>
+  
+    <div class="row mt-3" *ngIf="carDetails">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Maker</th>
+              <th>Model</th>
+              <th>Price</th>
+              <th *ngIf="getRole=='User'">Pickup Date</th>
+              <th *ngIf="getRole=='User'">Return Date</th>
+              <th *ngIf="getRole=='User'">Book</th>
+              <th *ngIf="getRole=='Admin'">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let car of carDetailswithDate">
+              <td>{{ car.maker }}</td>
+              <td>{{ car.model }}</td>
+              <td>{{ car.rentalPrice }}</td>
+              <td *ngIf="getRole=='User'"><input type="date" [(ngModel)]="car.startDate" [min]="currentDate"></td>
+              <td *ngIf="getRole=='User'"><input type="date" [(ngModel)]="car.endDate" [min]="currentDate"></td>
+              <td *ngIf="getRole=='User'"><button class="btn btn-primary" (click)="onBook(car.carId,car.startDate,car.endDate)">Book</button></td>
+              <td *ngIf="getRole=='Admin'"><button class="btn btn-primary" (click)="editCar(car.carId)">Edit</button>
+                  <button class="btn btn-danger" (click)="deleteACar(car.carId)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
